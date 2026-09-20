@@ -344,4 +344,5 @@ with tab3:
 with tab4:
     status_label = "Active Member" if is_active_member == 1 else "Inactive Account"
     st.write(f"**Account Status:** {status_label}")
-    st.write(f"**Calculated CLV:** ${balance + (estimated_salary * 0.15 * tenure):,.2f}"
+    clv_val = balance + (estimated_salary * 0.15 * tenure)
+    st.write(f"**Calculated CLV:** ${clv_val:,.2f}")
