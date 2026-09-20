@@ -1,44 +1,52 @@
 # 🏦 Bank Customer Churn Prediction & Risk Analysis using ANN
 
-An **Artificial Neural Network (ANN)** based machine learning application that predicts whether a bank customer is likely to **churn** and provides insights into the factors associated with customer attrition.
+An **Artificial Neural Network (ANN)** based machine learning application for predicting bank customer churn and analyzing customer-level churn risk.
 
-The project combines **customer churn classification, risk analysis, model evaluation, and explainable AI (SHAP)** into an interactive Streamlit dashboard.
+The project combines **binary classification, churn probability prediction, risk analysis, model evaluation, and Explainable AI (SHAP)** into an interactive **Streamlit** web application.
 
 ## 🚀 Live Demo
 
-🔗 **Streamlit App:**
+**Streamlit Application:**
 https://ann-classification-churn-57wd6awignqlwknbu6jkup.streamlit.app/
+
+**GitHub Repository:**
+https://github.com/Avantika-09P/ANN-Classification-Churn
 
 ---
 
 ## 📌 Project Overview
 
-Customer churn occurs when a customer stops using a bank's services or closes their account. Predicting churn in advance can help banks identify customers who may be at risk and take appropriate retention measures.
+Customer churn occurs when a customer stops using a bank's services or closes their account. Identifying customers who may be at risk of churn can help support data-driven customer retention strategies.
 
-This project uses an **Artificial Neural Network (ANN)** to classify customers into:
+This project uses an **Artificial Neural Network (ANN)** to perform binary classification and predict the probability that a customer will churn.
 
-* ✅ **Retained Customer**
-* ⚠️ **Potential Churn Customer**
+The application provides:
 
-The application also provides customer-level predictions and model explanations to understand which features contribute to the prediction.
+* ✅ **Retained Customer** prediction
+* ⚠️ **Potential Churn** prediction
+* 📊 Churn probability
+* 🔍 Customer risk analysis
+* 💡 SHAP-based model explainability
+* 📈 Interactive Streamlit interface
 
 ---
 
 ## 🎯 Objectives
 
-* Predict whether a customer is likely to churn.
-* Analyze important factors affecting customer churn.
-* Use an ANN for binary classification.
-* Evaluate the model using multiple performance metrics.
-* Provide an interactive interface for customer-level predictions.
-* Use **SHAP** for model interpretability.
-* Categorize customers based on their predicted churn risk.
+* Predict whether a bank customer is likely to churn.
+* Estimate the probability of customer churn.
+* Analyze factors associated with customer churn.
+* Build an ANN-based binary classification model.
+* Evaluate classification performance using standard metrics.
+* Provide an interactive prediction interface.
+* Use **SHAP** to improve model interpretability.
+* Support customer-level churn risk analysis.
 
 ---
 
 ## 🧠 Machine Learning Approach
 
-The project follows a standard machine learning pipeline:
+The project follows the following machine learning workflow:
 
 ```text
 Customer Dataset
@@ -53,38 +61,38 @@ Artificial Neural Network
        ↓
 Churn Probability
        ↓
-Risk Classification
+Churn Classification
+       ↓
+Risk Analysis
        ↓
 SHAP Explainability
        ↓
-Interactive Streamlit Dashboard
+Streamlit Deployment
 ```
 
 ### Artificial Neural Network
 
-The ANN learns the relationship between customer attributes and the probability of churn.
+The ANN learns the relationship between customer attributes and their likelihood of churning.
 
-The model performs **binary classification**, where the output represents the probability that a customer will churn.
-
-A sigmoid activation function is used for the final output:
+Since churn prediction is a **binary classification** problem, the final layer produces a probability between 0 and 1 using the **sigmoid activation function**:
 
 $$
 P(\text{Churn}) = \sigma(z)
 $$
 
-where
+where:
 
 $$
 \sigma(z)=\frac{1}{1+e^{-z}}
 $$
 
-A probability closer to **1** indicates a higher likelihood of churn, while a probability closer to **0** indicates a lower likelihood.
+A probability closer to **1** represents a higher predicted likelihood of churn, while a probability closer to **0** represents a lower predicted likelihood.
 
 ---
 
 ## 📊 Dataset Features
 
-The model uses customer-related attributes such as:
+The model uses customer demographic, financial, and account-related information, including:
 
 * Credit Score
 * Geography
@@ -97,69 +105,68 @@ The model uses customer-related attributes such as:
 * Active Membership Status
 * Estimated Salary
 
-The target variable is:
+### Target Variable
 
 ```text
 Exited
 ```
 
-where:
-
-* `0` → Customer did not churn
-* `1` → Customer churned
+| Value | Meaning                |
+| ----- | ---------------------- |
+| `0`   | Customer did not churn |
+| `1`   | Customer churned       |
 
 ---
 
-## 🔍 Risk Analysis
+## 🔍 Churn Risk Analysis
 
-Instead of only returning a binary churn prediction, the application can use the predicted churn probability to understand customer risk.
+The predicted churn probability can be used to understand the relative churn risk of an individual customer.
 
 Conceptually:
 
 ```text
-Low Churn Probability
-        ↓
-Lower Risk
+Lower Churn Probability
+          ↓
+     Lower Risk
 
-High Churn Probability
-        ↓
-Higher Risk
+
+Higher Churn Probability
+          ↓
+     Higher Risk
 ```
 
-This makes the system more useful for customer retention analysis because banks can focus their attention on customers with comparatively higher predicted churn risk.
+This allows the application to provide more information than a simple `Yes/No` churn prediction.
 
 ---
 
 ## 💡 Explainable AI with SHAP
 
-The project uses **SHAP (SHapley Additive exPlanations)** to improve model interpretability.
+The project uses **SHAP (SHapley Additive exPlanations)** to interpret the model's predictions.
 
 SHAP helps answer:
 
-> **"Why did the model make this prediction?"**
+> **Why did the model make this prediction?**
 
-For an individual customer, SHAP values indicate how different features contribute toward increasing or decreasing the predicted churn probability.
+For an individual customer, SHAP values indicate how different input features contribute to increasing or decreasing the predicted churn probability.
 
 For example:
 
 ```text
-Feature                 Effect
---------------------------------
-High Age                ↑ Churn Risk
-Inactive Member         ↑ Churn Risk
-Multiple Products       ↓/↑ Risk
-High Balance            ↓/↑ Risk
+Customer Feature
+       ↓
+SHAP Contribution
+       ↓
+Increase / Decrease in
+Predicted Churn Probability
 ```
 
-The actual contribution depends on the customer's input values and the trained model.
-
-This makes the ANN model easier to interpret instead of treating it as a complete black box.
+This provides greater transparency into the ANN's predictions and helps reduce the black-box nature of neural network models.
 
 ---
 
 ## 📈 Model Evaluation
 
-The classification model can be evaluated using:
+The classification model can be evaluated using standard classification metrics.
 
 ### Accuracy
 
@@ -167,11 +174,15 @@ $$
 Accuracy = \frac{TP+TN}{TP+TN+FP+FN}
 $$
 
+Accuracy measures the proportion of correctly classified customers.
+
 ### Precision
 
 $$
 Precision = \frac{TP}{TP+FP}
 $$
+
+Precision measures how many customers predicted as churners actually churned.
 
 ### Recall
 
@@ -179,32 +190,39 @@ $$
 Recall = \frac{TP}{TP+FN}
 $$
 
+Recall measures how many of the actual churners were correctly identified.
+
 ### F1 Score
 
 $$
 F1 = 2 \times \frac{Precision \times Recall}{Precision + Recall}
 $$
 
-For churn prediction, **recall is particularly important** because missing a genuinely at-risk customer can prevent the bank from taking an opportunity to retain them.
+F1-score provides a balance between precision and recall.
+
+For churn prediction, **recall is an important metric** because failing to identify an actual churner may result in a missed opportunity for customer retention.
 
 ---
 
-## 🖥️ Application Features
+## 🖥️ Streamlit Application
 
-The Streamlit application provides an interactive interface for:
+The deployed application provides an interactive interface where users can enter customer information and obtain a model prediction.
 
-* 👤 Entering customer information
-* 🔮 Predicting churn probability
-* 📊 Viewing the churn prediction
-* ⚠️ Understanding customer risk
-* 🔍 Interpreting model predictions
-* 📈 Exploring model-related insights
+### Key Features
+
+* 👤 Customer information input
+* 🔮 Churn prediction
+* 📊 Churn probability
+* ⚠️ Risk interpretation
+* 💡 SHAP-based explanation
+* 📈 Model insights
+* 🌐 Web-based deployment using Streamlit
 
 ---
 
 ## 🛠️ Tech Stack
 
-### Programming Language
+### Programming
 
 * **Python**
 
@@ -227,39 +245,25 @@ The Streamlit application provides an interactive interface for:
 * **Matplotlib**
 * **Plotly**
 
-### Web Application
+### Web Application & Deployment
 
 * **Streamlit**
 
-### Development
+### Development Tools
 
 * **Jupyter Notebook**
 * **VS Code**
-* **Git & GitHub**
+* **Git**
+* **GitHub**
 
 ---
 
-## 📂 Project Structure
+## 📂 Repository
 
-```text
-Bank-Customer-Churn/
-│
-├── app.py
-├── model/
-│   └── churn_model.h5
-│
-├── data/
-│   └── churn_data.csv
-│
-├── notebooks/
-│   └── model_training.ipynb
-│
-├── requirements.txt
-├── README.md
-└── .gitignore
-```
+**GitHub:**
+https://github.com/Avantika-09P/ANN-Classification-Churn
 
-> The exact file structure may vary depending on the final GitHub repository organization.
+The repository contains the source code, machine learning components, dependencies, and supporting project files required to run the application.
 
 ---
 
@@ -268,8 +272,8 @@ Bank-Customer-Churn/
 ### 1. Clone the repository
 
 ```bash
-git clone <your-repository-url>
-cd Bank-Customer-Churn
+git clone https://github.com/Avantika-09P/ANN-Classification-Churn.git
+cd ANN-Classification-Churn
 ```
 
 ### 2. Create a virtual environment
@@ -278,19 +282,27 @@ cd Bank-Customer-Churn
 python -m venv venv
 ```
 
-Activate it on Windows:
+### 3. Activate the virtual environment
+
+**Windows:**
 
 ```bash
 venv\Scripts\activate
 ```
 
-### 3. Install dependencies
+**Linux / macOS:**
+
+```bash
+source venv/bin/activate
+```
+
+### 4. Install dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### 4. Run the Streamlit application
+### 5. Run the Streamlit application
 
 ```bash
 streamlit run app.py
@@ -303,98 +315,98 @@ The application will open in your browser.
 ## 📦 Main Python Libraries
 
 ```text
-tensorflow
-keras
-scikit-learn
-pandas
-numpy
-streamlit
-shap
-matplotlib
-plotly
+TensorFlow
+Keras
+Scikit-learn
+Pandas
+NumPy
+Streamlit
+SHAP
+Matplotlib
+Plotly
 ```
 
 ---
 
 ## 🔬 Project Workflow
 
-### Step 1 — Data Collection
+### 1. Data Collection
 
-A bank customer dataset containing demographic, financial, and account-related information is used.
+A bank customer dataset containing demographic, financial, and account-related information is used for churn prediction.
 
-### Step 2 — Data Preprocessing
+### 2. Data Preprocessing
 
-The data is cleaned and prepared for machine learning.
+The dataset is prepared for machine learning by handling categorical and numerical features and applying the required transformations.
 
-Categorical variables are encoded and numerical features are scaled where required.
+### 3. Model Training
 
-### Step 3 — Model Training
+An **Artificial Neural Network** is trained to learn patterns associated with customer churn.
 
-An Artificial Neural Network is trained using the processed customer data.
+### 4. Churn Prediction
 
-### Step 4 — Classification
+The trained model produces a probability representing the predicted likelihood of customer churn.
 
-The trained model generates a churn probability for a customer.
+### 5. Risk Analysis
 
-### Step 5 — Risk Analysis
+The predicted probability is used to interpret the customer's relative churn risk.
 
-The probability is interpreted to identify customers who may have a higher risk of churn.
+### 6. Explainability
 
-### Step 6 — Explainability
+SHAP is used to analyze the contribution of individual features to the model's prediction.
 
-SHAP is used to investigate which input features contributed to the model's prediction.
+### 7. Deployment
 
-### Step 7 — Deployment
-
-The trained model is integrated into a Streamlit application and deployed online.
+The trained model is integrated into a **Streamlit** application and deployed as an interactive web application.
 
 ---
 
 ## 🏦 Business Use Case
 
-A bank can use a churn prediction system to identify customers who may be at risk of leaving.
+A bank can use a churn prediction system as a **decision-support tool** for customer retention analysis.
 
-The system can support:
+Potential applications include:
 
 * Customer retention analysis
-* Risk identification
-* Personalized retention strategies
+* Identification of potentially high-risk customers
 * Customer segmentation
-* Data-driven decision making
+* Data-driven retention planning
+* Understanding factors associated with customer churn
 
-The model is intended as a **decision-support system**, not as an automatic replacement for business judgment.
+The predictions should be considered alongside business rules and other customer information rather than being treated as an automatic decision.
 
 ---
 
-## 📌 Key Learning Outcomes
+## 📚 Key Learning Outcomes
 
-Through this project, the following concepts are demonstrated:
+This project demonstrates practical implementation of:
 
 * Binary classification
 * Artificial Neural Networks
-* Feature preprocessing
-* Model training and evaluation
+* Data preprocessing
+* Feature encoding and scaling
+* Model training
 * Classification metrics
 * Churn probability prediction
+* Risk analysis
 * Explainable AI
 * SHAP analysis
 * Streamlit application development
-* Machine learning model deployment
+* Machine learning deployment
 
 ---
 
 ## 🔮 Future Enhancements
 
-Possible improvements include:
+Possible future improvements include:
 
 * Compare ANN with Logistic Regression, SVM, Random Forest, and XGBoost.
-* Add interactive SHAP visualizations.
-* Introduce customer lifetime value (CLV) analysis.
-* Develop more detailed customer risk tiers.
-* Add automated retention recommendations.
-* Perform hyperparameter optimization.
+* Add more detailed SHAP visualizations.
+* Introduce Customer Lifetime Value (CLV) analysis.
+* Develop more granular customer risk categories.
+* Add retention recommendation modules.
+* Perform systematic hyperparameter optimization.
 * Add model monitoring and drift detection.
-* Deploy the model using a production ML pipeline.
+* Build a complete production-oriented ML pipeline.
 
 ---
 
@@ -406,11 +418,13 @@ B.Tech — Computer Science & Technology
 
 ---
 
-## 🌐 Live Application
+## 🌐 Try the Application
 
-Try the deployed application:
+**Live Streamlit App:**
+https://ann-classification-churn-57wd6awignqlwknbu6jkup.streamlit.app/
 
-**https://ann-classification-churn-57wd6awignqlwknbu6jkup.streamlit.app/**
+**GitHub Repository:**
+https://github.com/Avantika-09P/ANN-Classification-Churn
 
 ---
 
